@@ -1,0 +1,19 @@
+{
+  "name": "md-links",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "preferGlobal": true,
+  "bin": "./index.js",
+  "scripts": {
+    "test": "no hay test",
+    "start": "node index.js"
+  },
+  "author": "Andrea Monroy",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.17.1",
+    "request": "^2.88.0",
+    "xmlhttprequest": "^1.8.0"
+  }
+}
