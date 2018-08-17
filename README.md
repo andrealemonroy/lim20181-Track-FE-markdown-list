@@ -9,7 +9,7 @@ Primero comprendí como funcionará mediante un flujo del programa
 ![image1](https://user-images.githubusercontent.com/39166187/44286175-c1981e00-a22d-11e8-9580-81908877f0f3.png)
 
 Y tenía unas preguntas que investigar:
-![image2](https://user-images.githubusercontent.com/39166187/44286187-ca88ef80-a22d-11e8-89a3-a96985ef4a1d.png)
+
 
 Luego empecé a buscar información de node.js [Node.js](https://nodejs.org/en/).
 
