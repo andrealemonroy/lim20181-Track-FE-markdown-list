@@ -1,8 +1,10 @@
 # Markdown Links
-##Preámbulo
+
+## Preámbulo
 Este proyecto se basa en crear una librería.
 Historia de usuario: Como cliente quiero saber que links en un archivo md funcionan y no mostrar repetidos; para así poder reconocer en archivos md los links de manera productiva.
-##PROCESO
+
+## Proceso
 Primero comprendí como funcionará mediante un flujo del programa 
 ![image1](https://user-images.githubusercontent.com/39166187/44286175-c1981e00-a22d-11e8-9580-81908877f0f3.png)
 
@@ -17,7 +19,7 @@ Este es mi progreso para el día 17/08/18:
 ![capturamilestones](https://user-images.githubusercontent.com/39166187/44286087-6cf4a300-a22d-11e8-93c6-fd999da9eaac.PNG)
 
 
-##Usabilidad
+## Usabilidad
 
 Esta librería tiene de nombre 'md-links'.
 Para ejecutarla debe ser así en la terminal :
