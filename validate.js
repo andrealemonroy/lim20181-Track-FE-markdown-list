@@ -10,10 +10,10 @@ exports.validate = (path) => {
                 
                 request(link.toString().replace(')',''), function (error, response, body) {
                   if (!error && response.statusCode == 200) {
-                    console.log(link.toString().replace(')','')+'válido')
+                    console.log(link.toString()+'válido')
                   }
-                  else{yyy
-                      console.log(link.toString().replace(')','')+'no')
+                  else{
+                      console.log(link.toString()+'no')
                   }
                 })
             }
