@@ -31,7 +31,7 @@ Para ejecutarla debe ser así en la terminal :
 
 ## Preámbulo
 
-[Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado
+[Markdown](http://fjfjom/) es un lenguaje de marcado
 ligero muy popular entre developers. Es usado en muchísimas plataformas que
 manejan texto plano (GitHub, foros, blogs, ...), y es muy común
 encontrar varios archivos en ese formato en cualquier tipo de repositorio
@@ -108,6 +108,7 @@ Tópicos:
 - [Path](https://nodejs.org/api/path.html)
 - [File System](https://nodejs.org/api/fs.html)
 - [marked](https://github.com/markedjs/marked)
+- [Asíncronía en js](https://carlosazaustre.com/manejando-la-asincronia-en-javascript/)
 - [Asíncronía en js](https://carlosazaustre.com/manejando-la-asincronia-en-javascript/)
 
 ### Documentación requerida

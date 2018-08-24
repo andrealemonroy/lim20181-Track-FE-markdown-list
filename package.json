@@ -6,14 +6,25 @@
   "preferGlobal": true,
   "bin": "./index.js",
   "scripts": {
-    "test": "no hay test",
+    "test": "jest",
     "start": "node index.js"
   },
   "author": "Andrea Monroy",
   "license": "ISC",
   "dependencies": {
+    "array-remove": "^1.0.1",
     "commander": "^2.17.1",
+    "jest-cli": "^23.5.0",
+    "readdir": "^0.1.0",
     "request": "^2.88.0",
     "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "jest": "^22.4.3",
+    "regenerator-runtime": "^0.11.1"
   }
 }
