@@ -1,42 +1,67 @@
-#!/usr/bin/env node
+const fs = require('fs');
+const validate = require('./js/validate.js');
+const stats = require('./js/stats.js');
+const both = require('./js/linksBoth.js')
+// exports.filterMarkdownFile = (path, callback) => {
+//     fs.readFile(path, 'utf8', function (err, content) {
+//         const link = /(?:(ftp|http|https)?:\/\/[^\s]+)/g
+//         const expression = /(?:__|[*#])|\[(.*?)\]\(.*?\)/gm;
+//         const regex = new RegExp(expression);
+//         const linkRegex = new RegExp(link);
 
-'use strict';
-const program = require('commander');
-const links = require('./js/path.js');
-const linksValidate = require('./js/validate.js');
-const linksUniques = require('./js/stats.js');
-const isFileOrDirectory = require('./js/isFile.js');
-const toAbsolute = require('./js/validatePath.js');
-const linksBoth = require('./js/linksBoth.js');
+//         if (typeof content !== 'undefined'){
+//             callback(content.match(regex));
+//         }
+//     })
+// }
 
-program
-    .version('0.0.1')
-    .command('command <path> [option]', 'lista de links')
-    .option('-v, --validate', 'links válidos')
-    .option('-s, --stats', 'links únicos')
-    // .option('-sv, --validate --stats', 'links totales, únicos y rotos')
-    .action((path, option) => {
-        let pathAbsolute=toAbsolute.pathToAbsolute(path);
-        isFileOrDirectory.extension(pathAbsolute, option);
-        // links.filterMarkdownFile(pathAbsolute).then(function(result){
-        //     for (let i=0; i<result.length; i++){
-        //         if (result[i] !== '*' && result[i] !== '#'){
-        //             console.log(result[i]);
-        //         }
-        //     }
-        // });
-        if (option.validate && option.stats){
-            linksBoth.both()
-        }
-        else if (option.validate) {
-            linksValidate.validate(pathAbsolute);
-        }
-        else if (option.stats) {
-            linksUniques.stats(pathAbsolute);
-        }
-        // if (option.sv){
-        //     linksBoth.both(pathAbsolute);
-        // }
-    });
-program.parse(process.argv);
+exports.mdLinks = (path, options) => {
 
+        return new Promise((resolve, reject) => {
+                try {
+                    fs.readFile(path, 'utf8', function (err, content) {
+
+                        const expression = /(?:__|[*#])|\[(.*?)\]\(.*?\)/gm;
+                        const regex = new RegExp(expression);
+
+                        if (typeof content !== 'undefined') {
+                            let resultado = content.match(regex);
+                            let resultFinal = [];
+                            for (let i = 0; i < resultado.length; i++) {
+                                if (resultado[i] !== '*' && resultado[i] !== '#') {
+                                    resultFinal.push(resultado[i]);
+                                }
+                            }
+                            resultado = resultFinal;
+                            if (typeof options !== 'undefined') {
+                                if (options.validate) {
+                                    validate.validate(path,resultado).then(result => {
+                                        console.log(result);
+                                    })
+                                    .catch(console.error)
+                                }
+                                if (options.stats) {
+                                    stats.stats(resultado).then((result) => {
+                                        let unique = result.filter(function(elem, pos) {
+                                            return result.indexOf(elem) == pos;
+                                        });
+
+                                        console.log(`Total: ${result.length}`);
+                                        console.log(`Únicos: ${unique.length}`);
+                                    })
+                                    .catch(console.error)
+                                }
+                                if (options.validate && options.stats) {
+                                    resultado = both.both(resultado);
+                                }
+                            }
+                            resolve(resultado);
+                        }
+                    })
+                }
+                catch(error){
+                    reject(error);
+                }
+            });
+
+        }

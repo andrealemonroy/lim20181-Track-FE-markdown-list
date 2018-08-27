@@ -1,25 +1,82 @@
-const links = require('./path.js');
 const request = require('request');
-exports.validate = (path) => {
-    links.filterMarkdownFile(path).then(result => {
+const reqp = require('request-promise');
+exports.validate = (path, result) => {
+    const linksValidate = [];
+    // console.log(result);
+    const promise = new Promise((resolve, reject) => {
+        try{
             for (let i = 0; i < result.length; i++) {
-                if (result[i] !== '*' && result[i] !== '#') {
-                    let linkExpression = /(?:(ftp|http|https)?:\/\/[^\s]+)/g;
-                    let regexLink = new RegExp(linkExpression);
-                    let link = result[i].match(regexLink);
-                    if (link !== null) {
-                        request(link.toString().replace(')', ''), function (error, response) {
-                            if (!error && response.statusCode === 200) {
-                                console.log(path + ' ' + link.toString() + 'ok'+response.statusCode)
+                let linkExpression = /(?:(ftp|http|https)?:\/\/[^\s]+)/g;
+                let regexLink = new RegExp(linkExpression);
+                let link = result[i].match(regexLink);
+                let description = /(?:__|[*#])/
+                let regexDescription = new RegExp(description);
+                let textDescription = result[i].match(regexDescription);
+                if (link !== null) {
+                    reqp({ uri: link[0].replace(')', ''), resolveWithFullResponse: true})
+                        .then(response => {
+                            let statusCode = '';
+                            if (typeof response !== 'undefined') {
+                                statusCode = response.statusCode;
                             } else {
-                                console.log(path + ' ' + link.toString() + 'no')
+                                statusCode = 500;
+                            }console.log(statusCode);
+                            if (statusCode === 200) {
+                                let linksOk = {
+                                    file: path,
+                                    href: link,
+                                    text: textDescription,
+                                    status: statusCode,
+                                    resultStatus: 'ok',
+                                }
+                                console.log(linksOk)
+                                linksValidate.push(linksOk);
+
+
+                            } else {
+                                let linksNotOk = {
+                                    file: path,
+                                    href: link,
+                                    text: textDescription,
+                                    status: statusCode,
+                                    resultStatus: 'fail',
+                                }
+                                console.log(linksNotOk)
+                                linksValidate.push(linksNotOk);
+                            
                             }
+                            resolve(linksValidate)
                         })
-                    } else {
-                        console.log(result[i] + 'no es link')
+                        .catch(err => {
+
+                            let linksNotOk = {
+                                file: path,
+                                href: link,
+                                text: textDescription,
+                                status: 500,
+                                resultStatus: 'fail',
+                            }
+                            console.log(linksNotOk);
+                            linksValidate.push(linksNotOk);
+                            resolve(linksValidate)
+                        })
+                } else {
+                    let linksNotOk = {
+                        file: path,
+                        href: link,
+                        text: 'no es link',
+                        status: 500,
+                        resultStatus: 'fail',
                     }
+                    linksValidate.push(linksNotOk);
+                    resolve(linksValidate)
                 }
             }
-        })
+        }
+        catch(error){
+            reject(error);
+        }
+    })
 
+    return promise;
 }
