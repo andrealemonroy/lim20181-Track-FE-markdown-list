@@ -8,7 +8,7 @@ let pathAbsolute=toAbsolute.pathToAbsolute(args[0]);
 if (args[1] !== undefined) {
     if (args[1] === '--validate') {
        mdLinks.mdLinks(pathAbsolute, {validate:true}).then(links => {
-        console.log(links)
+        // console.log(links)
       });
     };
     if (args[1] === '--stats') {

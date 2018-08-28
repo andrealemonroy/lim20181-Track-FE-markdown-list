@@ -2,18 +2,7 @@ const fs = require('fs');
 const validate = require('./js/validate.js');
 const stats = require('./js/stats.js');
 const both = require('./js/linksBoth.js')
-// exports.filterMarkdownFile = (path, callback) => {
-//     fs.readFile(path, 'utf8', function (err, content) {
-//         const link = /(?:(ftp|http|https)?:\/\/[^\s]+)/g
-//         const expression = /(?:__|[*#])|\[(.*?)\]\(.*?\)/gm;
-//         const regex = new RegExp(expression);
-//         const linkRegex = new RegExp(link);
 
-//         if (typeof content !== 'undefined'){
-//             callback(content.match(regex));
-//         }
-//     })
-// }
 
 exports.mdLinks = (path, options) => {
 
@@ -23,6 +12,8 @@ exports.mdLinks = (path, options) => {
 
                         const expression = /(?:__|[*#])|\[(.*?)\]\(.*?\)/gm;
                         const regex = new RegExp(expression);
+                        let linkExpression = /(?:(ftp|http|https)?:\/\/[^\s]+)/g;
+                        let regexLink = new RegExp(linkExpression);
 
                         if (typeof content !== 'undefined') {
                             let resultado = content.match(regex);
