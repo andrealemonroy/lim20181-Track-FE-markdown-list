@@ -17,9 +17,9 @@ if (args[1] !== undefined) {
           });;
     }
     if (args[1] === '--stats' && args[2] === '--validate'||args[1]==='--validate' && args[2]==='--stats'){
-        /*mdLinks.mdLinks(pathAbsolute, {validate:true, stats:true}).then(links => {
+        mdLinks.mdLinks(pathAbsolute, {validate:true, stats:true}).then(links => {
             //console.log(links)
-          });*/
+          });
     }
 }
 else{
