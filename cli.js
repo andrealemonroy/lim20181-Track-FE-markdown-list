@@ -2,9 +2,10 @@
 
 const mdLinks = require('../lim20181-Track-FE-markdown-list/index');
 const toAbsolute = require('./js/validatePath.js');
+const path = require('path');
 const [, , ...args] = process.argv;
 
-let pathAbsolute = toAbsolute.pathToAbsolute(args[0]);
+let pathAbsolute = path.join((path.join(process.cwd(), args[0])));
 // isFileOrDirectory.extension(pathAbsolute);
 
 if (args[1] !== undefined) {
