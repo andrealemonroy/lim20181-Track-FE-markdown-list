@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const file = require('./path.js');
 const validateJS = require('./validate.js');
 exports.extension = (route) => {
     recursive(route);

@@ -1,4 +1,4 @@
-const links = require('./path.js');
+
 let aux = [];
 let i = 0;
 let superResult = [];
