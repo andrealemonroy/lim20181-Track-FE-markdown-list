@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const mdLinks = require('../lim20181-Track-FE-markdown-list/index');
+const mdLinks = require('./index');
 const toAbsolute = require('./js/validatePath.js');
 const path = require('path');
 const [, , ...args] = process.argv;
