@@ -13,14 +13,16 @@ if (args[1] !== undefined) {
             validate: true,
             stats: true
         }).then(links => {
-            console.log(links);
+            console.log(`Total: ${links.total}`);
+            console.log(`Únicos: ${links.unique}`);
+            console.log(`Rotos: ${links.brokens}`);
         });
     } else {
         if (args[1] === '--validate') {
             mdLinks.mdLinks(pathAbsolute, {
                 validate: true
             }).then(links => {
-                console.log(links);
+                console.log(`${links[i].file} ${links[i].href} ${links[i].resultStatus} ${links[i].status} ${links[i].text}`)
             });
         };
 
@@ -28,7 +30,8 @@ if (args[1] !== undefined) {
             mdLinks.mdLinks(pathAbsolute, {
                 stats: true
             }).then(links => {
-                console.log(links);
+                console.log(`Total: ${links.total}`);
+                console.log(`Únicos: ${links.unique}`);
             });
         };
     }
