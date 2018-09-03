@@ -6,6 +6,7 @@ const path = require('path');
 const util = require('util');
 const stat = util.promisify(fs.stat);
 const readdir = util.promisify(fs.readdir);
+const mdLinks = require('../index.js')
 
 async function recursive(route) {
     // console.log(route);
@@ -22,6 +23,7 @@ async function recursive(route) {
         }
     } else if (stats.isFile() && extMd === extName) {
         files.push(route);
+        // mdLinks.mdLinks(route, options);
     }     
     return files;
 };
