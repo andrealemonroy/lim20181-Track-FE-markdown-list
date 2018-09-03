@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for lim20181-Track-FE-markdown-list/js/stats.js</title>
+    <title>Code coverage report for lim20181-Track-FE-markdown-list/js/isFile.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="..\..\prettify.css" />
     <link rel="stylesheet" href="..\..\base.css" />
@@ -16,35 +16,35 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="..\..\index.html">All files</a> / <a href="index.html">lim20181-Track-FE-markdown-list/js</a> stats.js
+      <a href="..\..\index.html">All files</a> / <a href="index.html">lim20181-Track-FE-markdown-list/js</a> isFile.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">92.86% </span>
+        <span class="strong">65% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/14</span>
+        <span class='fraction'>13/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">60% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>6/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">60% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>3/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">92.86% </span>
+        <span class="strong">65% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>13/14</span>
+        <span class='fraction'>13/20</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -76,73 +76,76 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">let aux = [];
-let i = 0;
-let superResult = [];
-exports.stats = (result) =&gt; {
-&nbsp;
-    return new Promise((resolve, reject) =&gt; {
-        let arrayResolve = [];
-&nbsp;
-        try {
-            for (let i = 0; i &lt; result.length; i++) {
-                arrayResolve.push(result[i].href);
-            }
-&nbsp;
-            let unique = arrayResolve.filter(function (elem, pos) {
-                return arrayResolve.indexOf(elem) == pos;
-            });
-&nbsp;
-            let counters = {
-                total: result.length,
-                unique: unique.length
-            };
-&nbsp;
-&nbsp;
-&nbsp;
-            resolve(counters)
-        } catch (error) {
-<span class="cstat-no" title="statement not covered" >            reject(error);</span>
-        }
-    });
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const fs = require('fs');
+const path = require('path');
+const validateJS = require('./validate.js');
+exports.extension = (route) =&gt; {
+    recursive(route);
 }
-&nbsp;</pre></td></tr>
+&nbsp;
+const recursive = (route) =&gt; {
+    const extMd = ".md";
+    let extName = path.extname(route);
+    fs.stat(route, (err, stats) =&gt; {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (stats &amp;&amp; stats.isDirectory()) {
+<span class="cstat-no" title="statement not covered" >            fs.readdir(route, <span class="fstat-no" title="function not covered" >(e</span>rr, files) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                files.forEach(<span class="fstat-no" title="function not covered" >fi</span>le =&gt; {</span>
+                    let reFile = <span class="cstat-no" title="statement not covered" >path.join(route, file);</span>
+<span class="cstat-no" title="statement not covered" >                    if (file !== '.git') {</span>
+<span class="cstat-no" title="statement not covered" >                        recursive(reFile);</span>
+                    }
+                });
+            })
+<span class="cstat-no" title="statement not covered" >            console.log('es carpeta');</span>
+        }
+        else <span class="missing-if-branch" title="else path not taken" >E</span>if (stats.isFile() &amp;&amp; (extMd==extName)) {
+            console.log('es archivo');
+            // lee archivos
+            console.log(route);
+            // validateJS.validate(route);
+        } else {
+<span class="cstat-no" title="statement not covered" >            console.log('no es archivo MarckDown');</span>
+        };
+    });
+}</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Sep 03 2018 15:35:49 GMT-0500 (Hora est. Pacífico, Sudamérica)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Sep 03 2018 15:14:22 GMT-0500 (Hora est. Pacífico, Sudamérica)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

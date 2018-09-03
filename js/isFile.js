@@ -1,32 +1,27 @@
+exports.extension = (route) => {
+    return recursive(route);
+}
 const fs = require('fs');
 const path = require('path');
-const validateJS = require('./validate.js');
-exports.extension = (route) => {
-    recursive(route);
-}
+const util = require('util');
+const stat = util.promisify(fs.stat);
+const readdir = util.promisify(fs.readdir);
 
-const recursive = (route) => {
+async function recursive(route) {
+    // console.log(route);
     const extMd = ".md";
     let extName = path.extname(route);
-    fs.stat(route, (err, stats) => {
-        if (stats && stats.isDirectory()) {
-            fs.readdir(route, (err, files) => {
-                files.forEach(file => {
-                    let reFile = path.join(route, file);
-                    if (file !== '.git') {
-                        recursive(reFile);
-                    }
-                });
-            })
-            console.log('es carpeta');
+    let files = [];
+    let stats = await stat(route);
+    if (stats.isDirectory()) {
+        let dirList = await readdir(route);
+        for (const file of dirList) {
+                let reFile = path.join(route, file);
+                let newFiles = await recursive(reFile);
+                files.push(...newFiles);
         }
-        else if (stats.isFile() && (extMd==extName)) {
-            console.log('es archivo');
-            // lee archivos
-            console.log(route);
-            // validateJS.validate(route);
-        } else {
-            console.log('no es archivo MarckDown');
-        };
-    });
-}
+    } else if (stats.isFile() && extMd === extName) {
+        files.push(route);
+    }     
+    return files;
+};

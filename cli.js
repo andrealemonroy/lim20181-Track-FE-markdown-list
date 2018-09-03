@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 
 const mdLinks = require('./index');
-const toAbsolute = require('./js/validatePath.js');
 const path = require('path');
 const [, , ...args] = process.argv;
 
 let pathAbsolute = path.join((path.join(process.cwd(), args[0])));
-// isFileOrDirectory.extension(pathAbsolute);
 
 if (args[1] !== undefined) {
 
@@ -23,9 +21,6 @@ if (args[1] !== undefined) {
                 validate: true
             }).then(links => {
                 console.log(links);
-                // for (let i = 0; i < links.length; i++) {
-                //     console.log(`${links[i].file} ${links[i].href} ${links[i].resultStatus} ${links[i].status} ${links[i].text}`)
-                // }
             });
         };
 

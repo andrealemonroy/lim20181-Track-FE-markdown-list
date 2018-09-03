@@ -8,7 +8,7 @@
     "md-links": "./cli.js"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "author": "Andrea Monroy",
   "license": "ISC",

@@ -1,14 +1,5 @@
-const fs = require('fs');
-const validate = require('./js/validate.js');
-const stats = require('./js/stats.js');
-const fileOrDirectory = require('./js/isFile.js')
-
-exports.mdLinks = (path, options) => {
-    
+getFiles = (path, options) =>{
     return new Promise((resolve, reject) => {
-        fileOrDirectory.extension(path).then(file=>{;
-            console.log(file)});
-            
         try {
 
             fs.readFile(path, 'utf8', function (err, content) {
@@ -129,5 +120,4 @@ exports.mdLinks = (path, options) => {
             reject(error);
         }
     });
-
 }

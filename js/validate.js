@@ -1,4 +1,3 @@
-const request = require('request');
 const reqp = require('request-promise');
 exports.validate = (path, result) => {
 	const linksValidate = [];
