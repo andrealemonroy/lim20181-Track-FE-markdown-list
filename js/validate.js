@@ -15,9 +15,9 @@ exports.validate = (path, result) => {
 					let hrefLink = link[0].replace(')', '');
 					let textWithoutArray = textDescription[0];
 					reqp({
-							uri: hrefLink,
-							resolveWithFullResponse: true
-						})
+						uri: hrefLink,
+						resolveWithFullResponse: true
+					})
 						.then(response => {
 
 							let linksOk = {
@@ -27,7 +27,7 @@ exports.validate = (path, result) => {
 								status: response.statusCode,
 								resultStatus: 'ok',
 							}
-	
+
 							linksValidate.push(linksOk);
 							if (linksValidate.length === result.length) {
 								resolve(linksValidate)
@@ -42,7 +42,7 @@ exports.validate = (path, result) => {
 								status: 500,
 								resultStatus: 'fail',
 							}
-	
+
 							linksValidate.push(linksNotOk);
 							if (linksValidate.length === result.length) {
 								resolve(linksValidate)
