@@ -2,8 +2,7 @@ const fs = require('fs');
 const validate = require('./js/validate.js');
 const stats = require('./js/stats.js');
 const fileOrDirectory = require('./js/isFile.js')
-const mdLinks = require('./index.js')
-module.exports.mdLinks = (path, options) => {
+const mdLinks  = (path, options) => {
 
     return new Promise((resolve, reject) => {
         fileOrDirectory.extension(path).then(file => {
@@ -140,3 +139,5 @@ module.exports.mdLinks = (path, options) => {
         })
     })
 }
+
+module.exports = mdLinks;
