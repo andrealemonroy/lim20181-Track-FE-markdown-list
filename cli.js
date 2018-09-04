@@ -9,7 +9,7 @@ let pathAbsolute = path.join((path.join(process.cwd(), args[0])));
 if (args[1] !== undefined) {
 
     if (args[1] === '--stats' && args[2] === '--validate' || args[1] === '--validate' && args[2] === '--stats') {
-        mdLinks.mdLinks(pathAbsolute, {
+        mdLinks(pathAbsolute, {
             validate: true,
             stats: true
         }).then(links => {
@@ -19,15 +19,17 @@ if (args[1] !== undefined) {
         });
     } else {
         if (args[1] === '--validate') {
-            mdLinks.mdLinks(pathAbsolute, {
+            mdLinks(pathAbsolute, {
                 validate: true
             }).then(links => {
-                console.log(`${links[i].file} ${links[i].href} ${links[i].resultStatus} ${links[i].status} ${links[i].text}`)
+                links.forEach(link => {
+                    console.log(`${link.file} ${link.href} ${link.resultStatus} ${link.status} ${link.text}`)
+                });
             });
         };
 
         if (args[1] === '--stats') {
-            mdLinks.mdLinks(pathAbsolute, {
+            mdLinks(pathAbsolute, {
                 stats: true
             }).then(links => {
                 console.log(`Total: ${links.total}`);
@@ -36,9 +38,9 @@ if (args[1] !== undefined) {
         };
     }
 } else {
-    mdLinks.mdLinks(pathAbsolute).then(links => {
-        for (let i = 0; i < links.length; i++) {
-            console.log(`${links[i].file} ${links[i].href} ${links[i].text}`)
-        }
-    });
+    mdLinks(pathAbsolute).then(links => {
+        links.forEach(link => {
+            console.log(`${links.file} ${links.href} ${links.text}`)
+        });
+    })
 }
